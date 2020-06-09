@@ -1,0 +1,125 @@
+﻿@model Natroral.Core.Models.Order
+
+@{
+    ViewBag.Title = "Confirm Order";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+
+            <header>
+                <h1>@ViewBag.Title</h1>
+                <p>
+                    You may use this address as for shipping. If it is not correct, please modify it here. This will be your shipping address.
+                </p>
+            </header>
+            <div class="row paddings">
+                <div class="col-10 col-12-small">
+                    <h3>Confirm your shipping address</h3>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.FirstName)
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.LastName)
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.Street)
+                                @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.Street2, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.Street2)
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.City)
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.State)
+                                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.Country)
+                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-9 col-12-xsmall">
+                                @Html.EditorFor(model => model.ZipCode)
+                                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row paddings">
+                            <div class="col-3 col-12-small">
+                                <h4>Shipping Cost:</h4>
+                            </div>
+                            <div class="col-7 col-12-small">
+                                <h4>@Html.TextBoxFor(model => model.Shipping, new { @readonly = "readonly" })</h4>
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-3 col-12-small">
+                                <h4>Order Total:</h4>
+                            </div>
+                            <div class="col-7 col-12-small">
+                                <h4>@Html.TextBoxFor(model => model.OrderTotal, new { @readonly = "readonly" })</h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-6 col-12-small">
+                                <input type="submit" value="Confirm Order" class="button large primary" />
+                            </div>
+                            <div class="col-6 col-12-small">
+                                @Html.ActionLink("Back to Basket", "Index", null, new { @class = "button" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

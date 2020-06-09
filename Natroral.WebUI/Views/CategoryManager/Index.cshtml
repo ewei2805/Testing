@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Natroral.Core.Models.Category>
+
+@{
+    ViewBag.Title = "Category Manager";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+            </header>
+            <br />
+            <p>
+                @Html.ActionLink("Add New Category", "Create")
+            </p>
+            <div class="table-wrapper">
+                <table class="alt">
+                    <tr>
+                        <td>
+                            <strong>
+                                @Html.DisplayNameFor(model => model.CategoryName)
+                            </strong>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </section>
+    </section>
+</div>

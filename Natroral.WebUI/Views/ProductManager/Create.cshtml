@@ -1,0 +1,120 @@
+﻿@model Natroral.Core.ViewModels.ProductManagerViewModel
+
+@{
+    ViewBag.Title = "Create New Product";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+            </header>
+            <br />
+            @using (Html.BeginForm("Create", "ProductManager", FormMethod.Post, new { encType = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Name, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.EditorFor(model => model.Product.Name)
+                        @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.SEOName, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.EditorFor(model => model.Product.SEOName)
+                        @Html.ValidationMessageFor(model => model.Product.SEOName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Summary, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.TextAreaFor(model => model.Product.Summary, new { @rows = 4 })
+                        @Html.ValidationMessageFor(model => model.Product.Summary, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Description, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.TextAreaFor(model => model.Product.Description, new { @rows = 6 })
+                        @Html.ValidationMessageFor(model => model.Product.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Tags, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.TextAreaFor(model => model.Product.Tags, new { @rows = 2 })
+                        @Html.ValidationMessageFor(model => model.Product.Tags, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Usage, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.TextAreaFor(model => model.Product.Usage, new { @rows = 4 })
+                        @Html.ValidationMessageFor(model => model.Product.Usage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Weight, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.EditorFor(model => model.Product.Weight)
+                        @Html.ValidationMessageFor(model => model.Product.Weight, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Price, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.EditorFor(model => model.Product.Price)
+                        @Html.ValidationMessageFor(model => model.Product.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Rating, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        @Html.EditorFor(model => model.Product.Rating)
+                        @Html.ValidationMessageFor(model => model.Product.Rating, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Image, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-8 col-12-xsmall">
+                        <input type="file" id="file" name="file" />
+                    </div>
+                </div>
+
+                <div class="row gtr-200 paddings">
+                    @Html.LabelFor(model => model.Product.Category, htmlAttributes: new { @class = "col-2 col-12-xsmall" })
+                    <div class="col-6 col-12-xsmall">
+                        @Html.DropDownListFor(model => model.Product.Category, new SelectList(Model.Categories, "CategoryName", "CategoryName"))
+                    </div>
+                </div>
+                <hr />
+                <div class="row gtr-200">
+                    <div class="col-2 col-12-xsmall"></div>
+                    <div class="col-8 col-12-xsmall">
+                        <input type="submit" value="Save New Product" class="button primary" />
+                    </div>
+                </div>
+            }
+            @Html.ActionLink("Back to List", "Index")
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

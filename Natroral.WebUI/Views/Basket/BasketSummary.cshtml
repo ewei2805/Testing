@@ -1,0 +1,5 @@
+﻿@model Natroral.Core.ViewModels.BasketSummaryViewModel
+
+<li><a href="@Url.Action("Index", "Basket")">@Model.BasketCount</a></li>
+<li><a href="@Url.Action("Index", "Basket")">@String.Format("{0:c}", Model.BasketTotal)</a></li>
+

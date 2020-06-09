@@ -1,0 +1,53 @@
+﻿@model Natroral.WebUI.Models.VerifyCodeViewModel
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <div class="row gtr-200">             
+                <div class="col-8 off-2 col-12-small off-1-xsmall">
+                    <header>
+                        <h1>@ViewBag.Title</h1>
+                    </header>
+
+                    @using (Html.BeginForm("VerifyCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("provider", @Model.Provider)
+                        @Html.Hidden("rememberMe", @Model.RememberMe)
+                        <h4>Enter verification code</h4>
+                        <hr />
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Code, new { @class = "col-3 col-12-xsmall" })
+                            <div class="col-7 col-12-xsmall">
+                                @Html.TextBoxFor(m => m.Code)
+                            </div>
+                        </div>
+                        <div class="row paddings">                            
+                            <div class="col-7 col-12-small">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberBrowser)
+                                    @Html.LabelFor(m => m.RememberBrowser)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-7 col-12-small">
+                                <input type="submit" class="btn btn-default" value="Submit" />
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@model Natroral.WebUI.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+                <h3>Associate your @ViewBag.LoginProvider account.</h3>
+            </header>
+            <br />
+            @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <h4>Association Form</h4>
+                <br />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <p class="just">
+                    You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
+                    Please enter a user name for this site below and click the Register button to finish
+                    logging in.
+                </p>
+                <div class="row paddings">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-3 col-11-small" })
+                    <div class="col-8 col-11-small">
+                        @Html.TextBoxFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+                <div class="row paddings">
+                    <div class = "col-3 col-11-small"></div>
+                    <div class="col-8 col-11-small">
+                        <input type="submit" class="button primary" value="Register" />
+                    </div>
+                </div>
+            }
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

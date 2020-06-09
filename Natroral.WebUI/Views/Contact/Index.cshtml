@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Natroral.Core.Models.Contact>
+
+@{
+    ViewBag.Title = "Messages From Web Contact";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+            </header>
+            @foreach (var item in Model)
+            {
+                <hr />
+                <div class="row paddings">
+                    <div class="col-8 col-12-small">
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                            (@Html.DisplayFor(modelItem => item.Email))
+                        </h4>
+                    </div>
+                    <div class="col-2 col-12-small">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </div>
+                </div>
+                <div class="row paddings">
+                    <div class="col-3 col-12-small">
+                        <strong>  Contact Date</strong>
+                    </div>
+                    <div class="col-7 col-12-small">
+                        @Html.DisplayFor(modelItem => item.CreatedAt)<br />
+                    </div>
+                </div>
+                <div class="row paddings">
+                    <div class="col-3 col-12-small">
+                        <strong>  Subject</strong>
+                    </div>
+                    <div class="col-7 col-12-small">
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </div>
+                </div>
+                <div class="row paddings">
+                    <div class="col-3 col-12-small">
+                        <strong>  Message Content</strong>
+                    </div>
+                    <div class="col-7 col-12-small">
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </div>
+                </div>
+            }
+
+            <br />
+        </section>
+    </section>
+</div>
+
+
+

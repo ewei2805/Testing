@@ -1,0 +1,127 @@
+﻿@model Natroral.Core.Models.Order
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <div class="row paddings">
+                <div class="col-12">
+                    <header>
+                        <h1>@ViewBag.Title</h1>
+                        <p>This is your order. Please check it out.</p>
+                    </header>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row paddings">
+                            <div class="col-6 col-12-small">
+                                <h3>Your Shipping Address</h3>
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.FirstName)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.LastName)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.Street)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.Street2, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.Street2)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.City)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.State)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.Country)
+                                    </div>
+                                </div>
+
+                                <div class="row paddings">
+                                    @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "col-3 col-12-xsmall" })
+                                    <div class="col-9 col-12-xsmall">
+                                        @Html.DisplayFor(model => model.ZipCode)
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-6 col-12-small">
+                                <h3>Order Items</h3>
+                                @Html.Partial("OrderItems", Model.OrderItems)
+                                <br />
+                                <div class="row paddings">
+                                    <div class="col-5 col-12-small">
+                                        <h4>Shipping Cost:</h4>
+                                    </div>
+                                    <div class="col-7 col-12-small">
+                                        <h4>$@Html.DisplayFor(model => model.Shipping)</h4>
+                                    </div>
+                                </div>
+                                <div class="row paddings">
+                                    <div class="col-5 col-12-small">
+                                        <h4>Order Total:</h4>
+                                    </div>
+                                    <div class="col-7 col-12-small">
+                                        <h4>$@Html.DisplayFor(model => model.OrderTotal)</h4>
+                                    </div>
+                                </div>
+                                <p>(The price is in Canadian Dollar)</p>
+                            </div>
+                        </div>                       
+                        <hr />
+                        <div class="row paddings">
+                            <div class="col-6 col-12-small">
+                            </div>
+                            <div class="col-6 col-12-small">
+                                <input type="submit" value="Proceed to Payment" class="button large primary" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @*<input type="hidden" name="cmd" value="_ext-enter">
+                <form action="https://www.sandbox.paypal.com/us/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="service@natroral.com">
+                    <input type="hidden" name="item_name" value="Item Name">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="amount" value="0.00">
+                    <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                </form>*@
+
+        </section>
+    </section>
+</div>

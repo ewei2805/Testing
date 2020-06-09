@@ -1,0 +1,131 @@
+﻿@model Natroral.WebUI.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Create Account";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<script type="text/javascript">
+    var onloadCallback = function () {
+        grecaptcha.render('divCap', {
+            'sitekey': '6Lf2ts4UAAAAAHbVjMuYwd5rdhkpcTBqiKUcTKby',
+            'callback': function (response) {
+                if (response != 'success') {
+                    $('#txtcaptcha').val('Try again to prove you are not a robot.');
+                    $('#txtcaptcha').css("display", "block");
+                }
+            }
+        });
+    };
+</script>
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <div class="row paddings">
+                <div class="col-8 off-2 col-12-small off-1-xsmall">
+                    <header>
+                        <h1>@ViewBag.Title</h1>
+                    </header>
+                    <p>
+                        Creating an account with your address is mostly for shipping purpose. When you make a purchase, this address will be popped up to let
+                        confirm where your items to be shipped to.
+                    </p>
+                    <p>A new account need to be confirmed. Please go to your mailbox to activate your account.</p>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.Email)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.PasswordFor(m => m.Password)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.PasswordFor(m => m.ConfirmPassword)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.FirstName)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.LastName)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Street, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.Street)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Street2, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.Street2)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.City, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.City)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.State, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.State)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.Country, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.Country)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            @Html.LabelFor(m => m.ZipCode, new { @class = "col-3 col-12-small" })
+                            <div class="col-8 col-12-small">
+                                @Html.TextBoxFor(m => m.ZipCode)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row paddings">
+                            <div class="col-3 col-12-small"></div>
+                            <div class="col-8 col-12-small">
+                                <div id="divCap"></div><br />
+                                <label for="divCap" id="txtcaptcha" style="display:none" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row paddings">
+                            <div class="col-3 col-12-small"></div>
+                            <div class="col-8 col-12-small">
+                                <input type="submit" class="button large primary" value="Register" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

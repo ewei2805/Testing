@@ -1,0 +1,86 @@
+﻿@using Natroral.WebUI.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <div class="row gtr-200">
+                <div class="col-8 off-2 col-12-small off-1-xsmall">
+                    <section id="loginForm">
+                        <header>
+                            <h2>@ViewBag.Title</h2>
+                        </header>
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Use a local account to log in.</h4>
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row paddings">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-3 col-11-small" })
+                                <div class="col-9 col-12-small">
+                                    @Html.TextBoxFor(m => m.Email)
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row paddings">
+                                @Html.LabelFor(m => m.Password, new { @class = "col-3 col-11-small" })
+                                <div class="col-9 col-12-small">
+                                    @Html.PasswordFor(m => m.Password)
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row paddings">
+                                <div class="col-3 col-12-small"></div>
+                                <div class="col-9 col-11-small">
+                                    @*@Html.CheckBoxFor(m => m.RememberMe)
+                                      @Html.LabelFor(m => m.RememberMe)*@
+                                    <input data-val="true" id="RememberMe" name="RememberMe" type="checkbox" value= "true" />
+                                    <label for="RememberMe">Remember me?</label>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row paddings">
+                                <div class="col-3 col-12-small">
+                                </div>
+                                <div class="col-9 col-12-small">
+                                    <input type="submit" value="Log in" class="button large primary" />
+                                </div>
+                            </div>
+                            <div class="row paddings">
+                                <div class="col-3 col-12-small">
+                                </div>
+                                <div class="col-9 col-12-small">
+                                    <div class="row paddings">
+                                        <div class="col-6 col-12-xsmall">
+                                            @Html.ActionLink("Register as a new user", "Register")
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </section>
+                </div>
+
+                @*<div class="col-4">
+                        <section id="socialLoginForm">
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                        </section>
+                    </div>*@
+            </div>
+        </section>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>Adminiatration</h1>
+            </header>
+            <div class="table-wrapper row">
+                <div class="col-9 col-12-small">
+                    <table class="alt">
+                        <tr>
+                            <td colspan="2">
+                                <h4>Product Management</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50%">@Html.ActionLink("Product Categories", "Index", "CategoryManager")</td>
+                            <td>
+                                @Html.ActionLink("Products", "Index", "ProductManager")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>Order Management</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.ActionLink("Orders", "Index", "OrderManager")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>User Management</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>Contact Messages</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.ActionLink("Messages", "Index", "Contact")</td>
+                            <td></td>
+                        </tr>
+                    </table>                 
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
+

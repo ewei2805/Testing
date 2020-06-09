@@ -1,0 +1,67 @@
+﻿@model Natroral.Core.ViewModels.ProductListViewModel
+
+@{
+    ViewBag.Title = "ProductListing";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <!-- Main -->
+    <section class="main">
+        <section>
+            <header>
+                <h1>Products</h1>
+            </header>
+            <span class="image main"><img src=@Url.Content("~/Content/images/prod-listing.jpg") alt="product listing header" /></span>
+            <div class="row gtr-200">
+                <div class="col-3 col-12-medium">
+                    <h4>Select by Category</h4>
+                    <div class="catlist">
+                        @Html.ActionLink("All", "ProductListing", null, new { @class = Request["Category"] == null ? "category catactive" : "category" })
+                        @foreach (var cat in Model.Categories)
+                        {
+                            @Html.ActionLink(cat.CategoryName, "ProductListing", new { Category = cat.CategoryName },
+                                new { @class = Request["Category"] == cat.CategoryName ? "category catactive" : "category" })
+                        }
+                    </div>
+                </div>
+                <div class="col-9 col-12-medium" style="text-align:left;">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="row paddings">
+                            <div class="col-4 col-12-small">
+                                <img class="image fit prod-img" src="~/Content/ProductImages/@item.Image" />
+                                <h4>Unit Price: @String.Format("{0:c}", @item.Price) (CAD)</h4>
+                                <span>
+                                    <a href="@Url.Action("AddToBasket", "Basket", new { Id=item.Id})" class="button primary center">Add to Basket</a>
+                                </span>
+                            </div>
+                            <div class="col-8 col-12-small">
+                                <h4><a href="@Url.Action("Details", "Home", new { name = item.SEOName })">@item.Name</a> </h4>
+                                <p class="prod-desc">
+                                    @for (int i = 0; i < item.Rating; i++)
+                                    {
+                                        <i class="fas fa-star star-rating"></i>
+                                    }
+                                    @for (int i = item.Rating; i < 5; i++)
+                                    {
+                                        <i class="far fa-star star-rating"></i>
+                                    }
+                                </p>
+                                <p class="prod-desc">
+                                    <strong>Highlight: </strong>@item.Tags<br />
+                                    <strong>Product Summary: </strong> @item.Summary<br />                               
+                                    <strong>Net Weight:</strong>  @item.Weight
+                                </p>
+                                <a href="@Url.Action("Details", "Home", new { name = item.SEOName })">View Details</a>
+                            </div>
+                        </div>  
+                        <br /><br />
+                    }
+                </div>
+            </div>
+
+        </section>
+    </section>
+</div>
+

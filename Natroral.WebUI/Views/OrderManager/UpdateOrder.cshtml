@@ -1,0 +1,127 @@
+﻿@model Natroral.Core.Models.Order
+
+@{
+    ViewBag.Title = "Update Order";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+            </header>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.Id)
+                <div class="row paddings">
+                    <div class="col-5 col-12-small">
+                        <h3>Order Details</h3>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Order Status
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                @Html.DropDownListFor(model => model.OrderStatus, new SelectList(ViewBag.StatusList))
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Date Created
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.CreatedAt)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Email
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Full Name
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Street
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.Street)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Street 2
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.Street2)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                City
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.City)
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                State/Province
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.State)
+                            </div>
+                        </div>
+
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Country
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.Country)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                                Zip Code
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                @Html.DisplayFor(model => model.ZipCode)
+                            </div>
+                        </div>
+                        <div class="row paddings">
+                            <div class="col-5 col-12-xsmall">
+                            </div>
+                            <div class="col-7 col-12-xsmall">
+                                <input type="submit" value="Save Change" class="button primary" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 col-12-small">
+                        <h3>Order Items</h3>
+                        @Html.Partial("OrderItems", Model.OrderItems)
+                    </div>
+                </div>
+            }
+            <div class="row paddings">
+                <div class="col-12">
+                    @Html.ActionLink("Back to Orders", "Index")
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
+

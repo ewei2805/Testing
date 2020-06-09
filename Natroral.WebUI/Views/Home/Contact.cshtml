@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Contact Natroral";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<script type="text/javascript">
+    var onloadCallback = function () {
+        grecaptcha.render('divCapt', {
+            'sitekey': '6Lf2ts4UAAAAAHbVjMuYwd5rdhkpcTBqiKUcTKby',
+            'callback': function (response) {
+                $('#txtcaptcha').val('Good choice.');
+                $('#txtcaptcha').css("display", "block");
+            }
+        });
+    };
+</script>
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+                <p>Any opinion and recommendation are welcome. Please fill up the form and send it to us. We will get back to you soon.</p>
+            </header>
+            <br />
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                    Your Full Name
+                </div>
+                <div class="col-7 col-12-xsmall">
+                    <input type="text" id="fname" name="fname" required />
+                </div>
+            </div>
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                    Your Contact Email
+                </div>
+                <div class="col-7 col-12-xsmall">
+                    <input type="text" id="contactemail" name="contactemail" required />
+                </div>
+            </div>
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                    Subject
+                </div>
+                <div class="col-7 col-12-xsmall">
+                    <input type="text" id="subject" name="subject" required />
+                </div>
+            </div>
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                    Your Message
+                </div>
+                <div class="col-7 col-12-xsmall">
+                    <textarea name="message" id="message" rows="6"></textarea>
+                </div>
+            </div>
+            <hr />
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                </div>
+                <div class="col-9 col-12-xsmall">
+                    <div id="divCapt"></div>
+                    <br />
+                    <label id="txtcaptcha" type="text" style="display:none" required />
+                </div>
+            </div>
+            <div class="row paddings">
+                <div class="col-3 col-12-xsmall">
+                </div>
+                <div class="col-9 col-12-xsmall">
+                    <input type="submit" id="sendmsg" name="sendmsg" class="button primary" value="Submit" />
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+

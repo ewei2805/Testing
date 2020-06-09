@@ -1,0 +1,57 @@
+﻿@model Natroral.Core.Models.Product
+
+@{
+    ViewBag.Title = Model.Name + " Details";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h2>@Html.DisplayFor(model => model.Name)</h2>
+            </header>
+            <br />
+            <div class="row gtr-200">
+                <div class="col-6 col-10-medium col-12-small">
+                    <img class="image fit prod-img" src="~/Content/ProductImages/@Model.Image" />
+                </div>
+                <div class="col-6 col-10-medium col-12-small">
+                    a video will be here
+                </div>
+            </div>
+            <div class="row gtr-200">
+                <div class="col-12 col-12-small">
+                    @for (int i = 0; i < Model.Rating; i++)
+                    {
+                        <i class="fas fa-star star-rating"></i>
+                    }
+                    @for (int i = Model.Rating; i < 5; i++)
+                    {
+                        <i class="far fa-star star-rating"></i>
+                    }
+                    <h4>Spotlight</h4>
+                    <p>@Html.DisplayFor(model => model.Tags)</p>
+                    <h4>Product Description</h4>
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                    <h4>How to Apply</h4>
+                    <p>@Html.DisplayFor(model => model.Usage)</p>
+                    <h4>Net Weight</h4>
+                    <p>@Html.DisplayFor(model => model.Weight)</p>
+                    <h4>Unit Price : @Html.DisplayFor(model => model.Price)</h4>
+                </div>
+            </div>
+            <div class="row gtr-200">
+                <div class="col-12">
+                    <a href="@Url.Action("AddToBasket", "Basket", new { Id=Model.Id})" class="button primary">Add To Basket</a>
+                    <hr />
+                </div>
+
+                <div class="col-12">
+                    @Html.ActionLink("Back to Product List", "ProductListing")
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+

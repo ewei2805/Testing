@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Natroral.Core.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+            <header>
+                <h1>@ViewBag.Title</h1>
+            </header>
+            <br />
+            @Html.ActionLink("Create New Product", "Create")
+            <br /><br />
+            @foreach (var item in Model)
+            {
+                <div class="row gtr-200">
+                    <div class="col-3 col-12-small">
+                        <img class="image fit prod-img" src="~/Content/ProductImages/@item.Image" />                      
+                    </div>
+                    <div class="col-9 col-12-small">
+                        <strong>@Html.DisplayNameFor(model => model.Category)</strong>:
+                        <span>@Html.DisplayFor(modelItem => item.Category)</span><br />
+                        <strong>@Html.DisplayNameFor(model => model.Name)</strong>:
+                        <span>@Html.DisplayFor(modelItem => item.Name)</span><br />
+                        <strong>@Html.DisplayNameFor(model => model.Summary)</strong>:
+                        <span>@Html.DisplayFor(modelItem => item.Summary)</span><br />
+                        <strong>@Html.DisplayNameFor(model => model.Weight)</strong>:
+                        <span>@Html.DisplayFor(modelItem => item.Weight)</span><br />
+                        <strong>@Html.DisplayNameFor(model => model.Rating): @Html.DisplayFor(modelItem => item.Rating)</strong>
+                        <h4>@Html.DisplayNameFor(model => model.Price): @Html.DisplayFor(modelItem => item.Price, "Currency")</h4>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </div>
+                </div>
+                <hr />
+            }
+        </section>
+    </section>
+</div>
+
+
+

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div class="wrapper">
+    <section class="main">
+        <section>
+
+            <header>
+                <h1>@ViewBag.Title</h1>
+                <p>Order has an error!</p>
+            </header>
+            @if (TempData[("CustomerError")] != null)
+            {
+                <p>@TempData[("CustomerError")]</p>
+            }
+            else if (TempData[("OrderError")] != null)
+            {
+                <p>@TempData[("OrderError")]</p>
+            }
+        </section>
+    </section>
+</div>
